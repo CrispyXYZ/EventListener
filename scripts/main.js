@@ -21,7 +21,7 @@ String.prototype.contains = function(another) {
 
 /**
  * Test if the string contains any of the strings in the array.
- * @param arr {String[]}
+ * @param arr {Array<String>}
  * @return {boolean} - true: contains any; false: does not contain.
  */
 String.prototype.containsOR = function(arr) {
