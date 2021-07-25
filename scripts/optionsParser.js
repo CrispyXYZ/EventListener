@@ -1,6 +1,7 @@
-import {options} from './options.js';
+import {Options} from './options.js';
 
-var filtchat = options.dontShowBadWords,
-    filtlist = options.badWordsList;
+var filtchat = Options.dontShowBadWords,
+    filtlist = Options.badWordsList,
+    enflycmd = Options.enableFlyCommand;
 
-export {filtchat, filtlist};
+export {filtchat, filtlist, enflycmd};

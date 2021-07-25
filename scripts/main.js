@@ -1,5 +1,5 @@
 import {Commands, World} from 'Minecraft';
-import {filtchat, filtlist} from './optionsParser.js';
+import {filtchat, filtlist, enflycmd} from './optionsParser.js';
 
 /**
  * Send message to Minecraft client.
@@ -21,7 +21,7 @@ String.prototype.contains = function(another) {
 
 /**
  * Test if the string contains any of the strings in the array.
- * @param arr {Array<String>}
+ * @param arr {String[]}
  * @return {boolean} - true: contains any; false: does not contain.
  */
 String.prototype.containsOR = function(arr) {
@@ -48,10 +48,18 @@ World.events.createEntity.subscribe( (e) => {
 });
 }
 
-if(filtchat){
-  World.events.beforeChat.subscribe( (e)=>{
-    if(e.message.containsOR(filtlist)){
-      e.message = '***';
-    }
-  });
-}
+
+World.events.beforeChat.subscribe( (e) => {
+  if(filtchat && e.message.containsOR(filtlist)) {
+    e.message = '***';
+  }
+  if(enflycmd && e.message.startsWith('.fly')) {
+    let player = e.sender;
+    let b;
+    log(player.name);
+    if(e.message == '.fly true')  Commands.run(`ability ${player.name} mayfly true`);
+    if(e.message == '.fly false')  Commands.run(`ability ${player.name} mayfly false`);
+    e.canceled = true;
+  }
+  return e;
+});
