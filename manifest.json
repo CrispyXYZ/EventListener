@@ -4,7 +4,7 @@
         "description": "By CrispyXYZ",
         "name": "Plugin Test",
         "uuid": "12345678-9abc-def0-1234-56789abcdef0",
-        "version": [0, 0, 2],
+        "version": [0, 0, 3],
         "min_engine_version": [ 1, 17, 10 ]
     },
     "modules": [
@@ -12,7 +12,7 @@
             "description": "Plugin Module",
             "type": "javascript",
             "uuid": "0fedcba9-8765-4321-0fed-cba987654321",
-            "version": [0, 0, 2],
+            "version": [0, 0, 3],
             "entry": "scripts/main.js"
         }
     ],

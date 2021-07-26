@@ -2,6 +2,7 @@ var Options =
 {
   "dontShowBadWords": false,
   "badWordsList": [],
+  "enhancedMonsters": true,
   "enableFlyCommand": true
   /* developing feature
   "enableCustomCammands": false,
