@@ -1,25 +1,27 @@
+import {Commands, World} from 'Minecraft';
+
 var Options =
 {
   "dontShowBadWords": false,
   "badWordsList": [],
   "enhancedMonsters": true,
-  "enableFlyCommand": true
-  /* developing feature
-  "enableCustomCammands": false,
+  "enableFlyCommand": true,
+  "invisibleSneaking": false, //not implement
+  "enableCustomCammands": true,
   "customCommands": [
     {
-      "command": "",
-      \**
-       * executes when command executes.
+      "command": ".helloworld",
+      /**
+       * executes when command sends.
        * @param sender {Player} - player who send the command.
        * @return {void}
-       *\
+       */
       "onExecute": function(sender){
-        
+        Commands.run(`tell ${sender.name} Hello World!`);
       }
     }
   ]
-  */
+  
 };
 
 

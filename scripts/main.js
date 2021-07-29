@@ -1,5 +1,12 @@
 import {Commands, Effects, World} from 'Minecraft';
-import {filtchat, filtlist, enflycmd, emonster} from './optionsParser.js';
+import {
+filtchat,
+filtlist,
+enflycmd,
+emonster,
+invsneak,
+custocmd,
+cmdslist } from './optionsParser.js';
 
 
 /**
@@ -132,16 +139,30 @@ if(emonster){
 
 
 World.events.beforeChat.subscribe( (e) => {
-  if(filtchat && e.message.containsOR(filtlist)) {
-    e.message = '***';
-  }
-  if(enflycmd && e.message.startsWith('.fly')) {
+  if(custocmd){
+    for(let i = 0, l = cmdslist.length; i < l; i++){
+      let obj = cmdslist[i];
+      if(e.message == obj.command) {
+        obj.onExecute(e.sender);
+        
+      }
+    }
+  } else if(enflycmd && e.message.startsWith('.fly')) {
     let player = e.sender;
-    let b;
-    log(player.name);
     if(e.message == '.fly true')  Commands.run(`ability ${player.name} mayfly true`);
     if(e.message == '.fly false')  Commands.run(`ability ${player.name} mayfly false`);
     e.canceled = true;
+  } else if(filtchat && e.message.containsOR(filtlist)) {
+    e.message = '***';
   }
 });
 
+/*
+World.events.tick.subscribe( () => {
+  let players = World.getPlayers();
+  for(let i=0;i<players.length;i++){
+    let p = players[i];
+    if(p.sneaking) p.addEffect(Effects.invisibility,1,1);
+  }
+});
+*/
